@@ -44,8 +44,8 @@ PLAYER1  = 23
 PLAYER2  = 22
 BUTTONS = [BUTTON_A, BUTTON_B, BUTTON_X, BUTTON_Y, SELECT, START, PLAYER1, PLAYER2]
 
-ANALOG_THRESH_NEG = -600
-ANALOG_THRESH_POS = 600
+ANALOG_THRESH_NEG = -500
+ANALOG_THRESH_POS = 500
 analog_states = [False, False, False, False]  # up down left right
 
 KEYS= { # EDIT KEYCODES IN THIS TABLE TO YOUR PREFERENCES:
@@ -161,8 +161,8 @@ for button in BUTTONS:
 
 while True:
   try:
-    y = 800 - ads_read(0)
-    x = ads_read(1) - 800
+    x = ads_read(1) - 1226
+    y = ads_read(2) - 2000
   except IOError:
     continue
   #print("(%d , %d)" % (x, y))
@@ -179,17 +179,17 @@ while True:
   if (y > ANALOG_THRESH_NEG) and analog_states[1]:
     analog_states[1] = False
     handle_button(1001)      # send DOWN release
-  if (x < ANALOG_THRESH_NEG) and not analog_states[2]:
+  if (x < ANALOG_THRESH_NEG) and not analog_states[3]:
     analog_states[2] = True
-    handle_button(1002)      # send LEFT press
-  if (x > ANALOG_THRESH_NEG) and analog_states[2]:
+    handle_button(1003)      # send right press
+  if (x > ANALOG_THRESH_NEG) and analog_states[3]:
     analog_states[2] = False
-    handle_button(1002)      # send LEFT release
-  if (x > ANALOG_THRESH_POS) and not analog_states[3]:
+    handle_button(1003)      # send right release
+  if (x > ANALOG_THRESH_POS) and not analog_states[2]:
     analog_states[3] = True
-    handle_button(1003)      # send RIGHT press
-  if (x < ANALOG_THRESH_POS) and analog_states[3]:
+    handle_button(1002)      # send left press
+  if (x < ANALOG_THRESH_POS) and analog_states[2]:
     analog_states[3] = False
-    handle_button(1003)      # send RIGHT release
+    handle_button(1002)      # send left release
 
   time.sleep(0.01)
