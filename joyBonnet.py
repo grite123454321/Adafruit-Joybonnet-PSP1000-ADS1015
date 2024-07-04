@@ -34,31 +34,41 @@ except ImportError:
 DEBUG = False
 BOUNCE_TIME = 0.01 # Debounce time in seconds
 
-BUTTON_A = 12
+UP = 4
+DOWN = 17
+LEFT = 27
+RIGHT = 22
+BUTTON_A = 5
 BUTTON_B = 6
-BUTTON_X = 16
-BUTTON_Y = 13
+BUTTON_X = 19
+BUTTON_Y = 26
 SELECT   = 20
-START    = 26
-PLAYER1  = 23
-PLAYER2  = 22
-BUTTONS = [BUTTON_A, BUTTON_B, BUTTON_X, BUTTON_Y, SELECT, START, PLAYER1, PLAYER2]
+START    = 16
+L1  = 21
+R1  = 23
+HOTKEY   = 24
+BUTTONS = [UP, DOWN, LEFT, RIGHT, BUTTON_A, BUTTON_B, BUTTON_X, BUTTON_Y, SELECT, START, L1, R1, HOTKEY]
 
-ANALOG_THRESH_NEG = -500
-ANALOG_THRESH_POS = 500
+ANALOG_THRESH_NEG = -600
+ANALOG_THRESH_POS = 600
 analog_states = [False, False, False, False]  # up down left right
 
 KEYS= { # EDIT KEYCODES IN THIS TABLE TO YOUR PREFERENCES:
 	# See /usr/include/linux/input.h for keycode names
 	# Keyboard        Bonnet        EmulationStation
+        UP:       e.KEY_UP,       # 'Up' button
+        DOWN:     e.KEY_DOWN,     # 'Down' button
+        LEFT:     e.KEY_LEFT,     # 'Left' button
+        RIGHT:    e.KEY_RIGHT,    # 'Right' button
 	BUTTON_A: e.KEY_LEFTCTRL, # 'A' button
 	BUTTON_B: e.KEY_LEFTALT,  # 'B' button
 	BUTTON_X: e.KEY_Z,        # 'X' button
 	BUTTON_Y: e.KEY_X,        # 'Y' button
 	SELECT:   e.KEY_SPACE,    # 'Select' button
 	START:    e.KEY_ENTER,    # 'Start' button
-	PLAYER1:  e.KEY_1,        # '#1' button         
-	PLAYER2:  e.KEY_2,        # '#2' button
+	L1:       e.KEY_1,        # '#1' button
+	R1:       e.KEY_2,        # '#2' button
+        HOTKEY:   e.KEY_H,        # 'Hotkey' button
 	1000:     e.KEY_UP,       # Analog up
 	1001:     e.KEY_DOWN,     # Analog down
 	1002:     e.KEY_LEFT,     # Analog left
