@@ -177,29 +177,29 @@ while True:
     continue
   #print("(%d , %d)" % (x, y))
 
-  if (y > ANALOG_THRESH_POS) and not analog_states[0]:
-    analog_states[0] = True
-    handle_button(1000)      # send UP press
-  if (y < ANALOG_THRESH_POS) and analog_states[0]:
-    analog_states[0] = False
-    handle_button(1000)      # send UP release
-  if (y < ANALOG_THRESH_NEG) and not analog_states[1]:
+  if (y > ANALOG_THRESH_POS) and not analog_states[1]:
     analog_states[1] = True
     handle_button(1001)      # send DOWN press
-  if (y > ANALOG_THRESH_NEG) and analog_states[1]:
+  if (y < ANALOG_THRESH_POS) and analog_states[1]:
     analog_states[1] = False
     handle_button(1001)      # send DOWN release
+  if (y < ANALOG_THRESH_NEG) and not analog_states[0]:
+    analog_states[0] = True
+    handle_button(1000)      # send UP press
+  if (y > ANALOG_THRESH_NEG) and analog_states[0]:
+    analog_states[0] = False
+    handle_button(1000)      # send DOWN release
   if (x < ANALOG_THRESH_NEG) and not analog_states[3]:
-    analog_states[2] = True
+    analog_states[3] = True
     handle_button(1003)      # send right press
   if (x > ANALOG_THRESH_NEG) and analog_states[3]:
-    analog_states[2] = False
+    analog_states[3] = False
     handle_button(1003)      # send right release
   if (x > ANALOG_THRESH_POS) and not analog_states[2]:
-    analog_states[3] = True
+    analog_states[2] = True
     handle_button(1002)      # send left press
   if (x < ANALOG_THRESH_POS) and analog_states[2]:
-    analog_states[3] = False
+    analog_states[2] = False
     handle_button(1002)      # send left release
 
   time.sleep(0.01)
