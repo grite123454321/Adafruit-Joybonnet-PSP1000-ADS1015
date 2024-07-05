@@ -49,8 +49,8 @@ R1  = 23
 HOTKEY   = 24
 BUTTONS = [UP, DOWN, LEFT, RIGHT, BUTTON_A, BUTTON_B, BUTTON_X, BUTTON_Y, SELECT, START, L1, R1, HOTKEY]
 
-ANALOG_THRESH_NEG = -600
-ANALOG_THRESH_POS = 600
+ANALOG_THRESH_NEG = -500
+ANALOG_THRESH_POS = 500
 analog_states = [False, False, False, False]  # up down left right
 
 KEYS= { # EDIT KEYCODES IN THIS TABLE TO YOUR PREFERENCES:
@@ -171,24 +171,24 @@ for button in BUTTONS:
 
 while True:
   try:
-    x = ads_read(1) - 1226
-    y = ads_read(2) - 2000
+    x = ads_read(1) - 1200
+    y = ads_read(2) - 1200
   except IOError:
     continue
   #print("(%d , %d)" % (x, y))
 
-  if (y > ANALOG_THRESH_POS) and not analog_states[1]:
-    analog_states[1] = True
-    handle_button(1001)      # send DOWN press
-  if (y < ANALOG_THRESH_POS) and analog_states[1]:
-    analog_states[1] = False
-    handle_button(1001)      # send DOWN release
-  if (y < ANALOG_THRESH_NEG) and not analog_states[0]:
+  if (y > ANALOG_THRESH_POS) and not analog_states[0]:
     analog_states[0] = True
     handle_button(1000)      # send UP press
-  if (y > ANALOG_THRESH_NEG) and analog_states[0]:
+  if (y < ANALOG_THRESH_POS) and analog_states[0]:
     analog_states[0] = False
-    handle_button(1000)      # send DOWN release
+    handle_button(1000)      # send UP release
+  if (y < ANALOG_THRESH_NEG) and not analog_states[1]:
+    analog_states[1] = True
+    handle_button(1001)      # send DOWN press
+  if (y > ANALOG_THRESH_NEG) and analog_states[1]:
+    analog_states[1] = False
+    handle_button(1001)      # send DOWN release
   if (x < ANALOG_THRESH_NEG) and not analog_states[3]:
     analog_states[3] = True
     handle_button(1003)      # send right press
