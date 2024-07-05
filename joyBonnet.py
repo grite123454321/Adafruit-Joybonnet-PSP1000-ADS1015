@@ -69,10 +69,10 @@ KEYS= { # EDIT KEYCODES IN THIS TABLE TO YOUR PREFERENCES:
 	L1:       e.KEY_1,        # '#1' button
 	R1:       e.KEY_2,        # '#2' button
         HOTKEY:   e.KEY_H,        # 'Hotkey' button
-	1000:     e.KEY_UP,       # Analog up
-	1001:     e.KEY_DOWN,     # Analog down
-	1002:     e.KEY_LEFT,     # Analog left
-	1003:     e.KEY_RIGHT,    # Analog right
+	1000:     e.KEY_W,       # Analog up
+	1001:     e.KEY_S,     # Analog down
+	1002:     e.KEY_A,     # Analog left
+	1003:     e.KEY_D,    # Analog right
 }
 
 ###################################### ADS1015 microdriver #################################
